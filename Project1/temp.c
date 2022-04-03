@@ -20,6 +20,7 @@ void exe_command(char *name,char **args,int args_c);
 void filesearch(char *search,int open,char *path);
 void recursiveFileSearch(char *search ,int open, char *path);
 void pstraverse(int PID, char *f);
+//void writeDirFile(char* path);
 int installed = 0;
 enum return_codes
 {
@@ -388,7 +389,9 @@ int process_command(struct command_t *command)
 			r = chdir(command->args[0]);
 			if (r == -1)
 				printf("-%s: %s: %s\n", sysname, command->name, strerror(errno));
-			return SUCCESS;
+/*			else
+				writeDirFile(getcwd(NULL,0));
+*/			return SUCCESS;
 		}
 	}
 
@@ -830,3 +833,12 @@ int process_command(struct command_t *command)
 			 printf("install complete\n");
 
  }
+
+
+/*
+void writeDirFile(char* path){
+	FILE *f = fopen("directories", "r");
+	fputs(path, f);
+	fclode();
+}
+*/
